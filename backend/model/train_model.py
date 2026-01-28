@@ -1,10 +1,10 @@
 import os, sys
 
-# ✅ Always add the project root to sys.path dynamically
+# Always add the project root to sys.path dynamically
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, ROOT_DIR)
 
-print("✅ Project root added to path:", ROOT_DIR)
+print("Project root added to path:", ROOT_DIR)
 
 import pandas as pd
 import joblib
@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, roc_auc_score
 
-# ✅ Now this import will work
+# Now this import will work
 from backend.model.preprocessing import FEATURE_COLUMNS
 # Add root path
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../../")))
@@ -37,7 +37,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # ==============================
-# 🧠 Model 1: Logistic Regression (good for probabilities)
+# Model 1: Logistic Regression (good for probabilities)
 # ==============================
 log_model = LogisticRegression(
     max_iter=2000,
@@ -55,7 +55,7 @@ print(classification_report(y_test, y_pred_log))
 print("ROC AUC:", roc_auc_score(y_test, y_proba_log))
 
 # ==============================
-# 🧠 Model 2: RandomForest (improved tuning)
+# Model 2: RandomForest (improved tuning)
 # ==============================
 rf = RandomForestClassifier(
     n_estimators=500,
@@ -74,14 +74,14 @@ print(classification_report(y_test, y_pred_rf))
 print("ROC AUC:", roc_auc_score(y_test, y_proba_rf))
 
 # ==============================
-# ✅ Pick best performing model
+# Pick best performing model
 # ==============================
 log_auc = roc_auc_score(y_test, y_proba_log)
 rf_auc = roc_auc_score(y_test, y_proba_rf)
 best_model = rf if rf_auc > log_auc else log_model
 best_name = "Random Forest" if rf_auc > log_auc else "Logistic Regression"
 
-print(f"\n✅ Selected Model: {best_name}")
+print(f"\nSelected Model: {best_name}")
 print("Saving model and scaler...")
 
 # Save both
@@ -91,5 +91,5 @@ scaler_path = os.path.abspath(os.path.join(os.getcwd(), "../scaler.pkl"))
 joblib.dump(best_model, model_path)
 joblib.dump(scaler, scaler_path)
 
-print(f"✅ Model saved at: {model_path}")
-print(f"✅ Scaler saved at: {scaler_path}")
+print(f"Model saved at: {model_path}")
+print(f"Scaler saved at: {scaler_path}")
