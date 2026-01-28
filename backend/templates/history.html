@@ -1,0 +1,70 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prediction History</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Recent Predictions</h1>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('history') }}">History</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>CP</th>
+            <th>Trestbps</th>
+            <th>Chol</th>
+            <th>FBS</th>
+            <th>RestECG</th>
+            <th>Thalach</th>
+            <th>Exang</th>
+            <th>Oldpeak</th>
+            <th>Slope</th>
+            <th>CA</th>
+            <th>Thal</th>
+            <th>Result</th>
+            <th>Proba</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td>{{ r['id'] }}</td>
+            <td>{{ r['age'] }}</td>
+            <td>{{ r['sex'] }}</td>
+            <td>{{ r['cp'] }}</td>
+            <td>{{ r['trestbps'] }}</td>
+            <td>{{ r['chol'] }}</td>
+            <td>{{ r['fbs'] }}</td>
+            <td>{{ r['restecg'] }}</td>
+            <td>{{ r['thalach'] }}</td>
+            <td>{{ r['exang'] }}</td>
+            <td>{{ r['oldpeak'] }}</td>
+            <td>{{ r['slope'] }}</td>
+            <td>{{ r['ca'] }}</td>
+            <td>{{ r['thal'] }}</td>
+            <td>{{ 'Disease' if r['pred']==1 else 'No Disease' }}</td>
+            <td>{{ (r['proba']*100)|round(2) if r['proba'] is not none else '' }}</td>
+            <td>{{ r['created_at'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

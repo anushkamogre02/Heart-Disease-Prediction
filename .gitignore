@@ -1,0 +1,20 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model artifacts & data
+backend/model/*.pkl
+dataset/*.csv
+!dataset/README.txt

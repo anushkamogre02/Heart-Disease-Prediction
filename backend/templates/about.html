@@ -1,0 +1,26 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>About This Project</h1>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('history') }}">History</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="card">
+      <p>This system predicts the likelihood of heart disease using a machine learning model trained on the Kaggle Heart Disease dataset.</p>
+      <p>Stack: Flask (Python), scikit-learn, MySQL, HTML/CSS/JS.</p>
+    </div>
+  </div>
+</body>
+</html>
